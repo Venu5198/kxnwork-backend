@@ -35,7 +35,7 @@ jobs:
 
       - name: Build image
         run: |
-          IMAGE=${{ secrets.GCP_PROJECT }}-${{ secrets.ARTIFACT_REGISTRY_LOCATION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/backend-repo/backend:${{ github.sha }}
+          gcloud auth configure-docker ${{ secrets.ARTIFACT_REGISTRY_HOST }} --quiet
           docker build -t $IMAGE .
           docker push $IMAGE
         env:
